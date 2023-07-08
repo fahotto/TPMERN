@@ -22,7 +22,7 @@ import { users, posts } from "./data/index.js";
 /* CONFIGURATIONS */
 
 const corsOptions = {
-  origin: "https://mernfront-wob9.onrender.com/",
+  origin: "https://mernfront-wob9.onrender.com",
 } 
 
 const __filename = fileURLToPath(import.meta.url);
