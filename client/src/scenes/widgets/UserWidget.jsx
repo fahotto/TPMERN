@@ -22,7 +22,7 @@ const UserWidget = ({ userId, picturePath }) => {
   const main = palette.neutral.main;
 
   const getUser = async () => {
-    const response = await fetch(`https://mernback-sb8m.onrender.com/users/${userId}`, {
+    const response = await fetch(`https://tpmern2-production.up.railway.app/users/${userId}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -72,7 +72,7 @@ const UserWidget = ({ userId, picturePath }) => {
             >
               {firstName} {lastName}
             </Typography>
-            <Typography color={medium}>{friends.length} friends</Typography>
+            <Typography color={medium}>{friends.length} amigos</Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />
@@ -97,13 +97,13 @@ const UserWidget = ({ userId, picturePath }) => {
       {/* THIRD ROW */}
       <Box p="1rem 0">
         <FlexBetween mb="0.5rem">
-          <Typography color={medium}>Who's viewed your profile</Typography>
+          <Typography color={medium}>Quienes miraron tu perfil</Typography>
           <Typography color={main} fontWeight="500">
             {viewedProfile}
           </Typography>
         </FlexBetween>
         <FlexBetween>
-          <Typography color={medium}>Impressions of your post</Typography>
+          <Typography color={medium}>Likes de tus Posts</Typography>
           <Typography color={main} fontWeight="500">
             {impressions}
           </Typography>
@@ -115,18 +115,20 @@ const UserWidget = ({ userId, picturePath }) => {
       {/* FOURTH ROW */}
       <Box p="1rem 0">
         <Typography fontSize="1rem" color={main} fontWeight="500" mb="1rem">
-          Social Profiles
+          Otros perfiles sociales
         </Typography>
 
         <FlexBetween gap="1rem" mb="0.5rem">
           <FlexBetween gap="1rem">
             <img src="../assets/twitter.png" alt="twitter" />
+          <a href="https://twitter.com/" target="_blank" rel="noreferrer" style={{ textDecoration : "none" }}>
             <Box>
               <Typography color={main} fontWeight="500">
                 Twitter
               </Typography>
-              <Typography color={medium}>Social Network</Typography>
+              <Typography color={medium}>Red Social</Typography>
             </Box>
+          </a>
           </FlexBetween>
           <EditOutlined sx={{ color: main }} />
         </FlexBetween>
@@ -134,12 +136,14 @@ const UserWidget = ({ userId, picturePath }) => {
         <FlexBetween gap="1rem">
           <FlexBetween gap="1rem">
             <img src="../assets/linkedin.png" alt="linkedin" />
+            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" style={{ textDecoration : "none" }}>
             <Box>
               <Typography color={main} fontWeight="500">
                 Linkedin
               </Typography>
-              <Typography color={medium}>Network Platform</Typography>
+              <Typography color={medium}>Comunidad Profesional</Typography>
             </Box>
+            </a>
           </FlexBetween>
           <EditOutlined sx={{ color: main }} />
         </FlexBetween>

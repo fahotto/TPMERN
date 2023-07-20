@@ -20,9 +20,10 @@ import { users, posts } from "./data/index.js";
 
 
 /* CONFIGURATIONS */
-
+// cambiar al deployar!!
 const corsOptions = {
-  origin: "https://mernfront-wob9.onrender.com",
+ // origin: "http://localhost:3000", poner SIN la BARRA AL FINAL
+ origin: "https://friendship.up.railway.app",
 } 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -38,7 +39,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors(corsOptions));
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
-/* FILE STORAGE */
+// FILE STORAGE  ON LOCAL 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/assets");
@@ -77,3 +78,4 @@ mongoose
   app.get("/", (req, res) => {
     res.status(201).json({message: "Connected to Backend!"});
 });
+ 

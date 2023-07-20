@@ -13,7 +13,7 @@ import {
   PAUSE,
   PERSIST,
   PURGE,
-  REGISTER,
+  REGISTER, 
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
@@ -28,7 +28,7 @@ const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-});
+}); 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -40,3 +40,4 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+ 

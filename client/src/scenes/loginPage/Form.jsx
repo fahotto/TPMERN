@@ -15,20 +15,21 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
+import Swal from 'sweetalert2';
 
 const registerSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
-  password: yup.string().required("required"),
-  location: yup.string().required("required"),
-  occupation: yup.string().required("required"),
-  picture: yup.string().required("required"),
+  firstName: yup.string().required("Ingrese su nombre"),
+  lastName: yup.string().required("Ingrese su apellido"),
+  email: yup.string().email("Ingrese un email valido").required("Ingrese su email"),
+  password: yup.string().required("Ingrese una contraseña"),
+  location: yup.string().required("Donde vivis?"),
+  occupation: yup.string().required("A que te dedicas?"),
+  picture: yup.string().required("Aqui va una linda foto de perfil"),
 });
 
 const loginSchema = yup.object().shape({
-  email: yup.string().email("invalid email").required("required"),
-  password: yup.string().required("required"),
+  email: yup.string().email("Ingrese un email valido").required("Ingrese su email"),
+  password: yup.string().required("Ingrese una contraseña"),
 });
 
 const initialValuesRegister = {
@@ -64,7 +65,7 @@ const Form = () => {
     formData.append("picturePath", values.picture.name);
 
     const savedUserResponse = await fetch(
-      "https://mernback-sb8m.onrender.com/auth/register",
+      "https://tpmern2-production.up.railway.app/auth/register",
       {
         method: "POST",
         body: formData,
@@ -75,11 +76,16 @@ const Form = () => {
 
     if (savedUser) {
       setPageType("login");
+      Swal.fire({
+        title: 'Friendship',
+        text: 'Usuario creado exitosamente! A continuación ingresa usando tu usuario y contraseña',
+        timer: 2000,        
+        });
     }
   };
 
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("https://mernback-sb8m.onrender.com/auth/login", {
+    const loggedInResponse = await fetch("https://tpmern2-production.up.railway.app/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
@@ -130,7 +136,7 @@ const Form = () => {
             {isRegister && (
               <>
                 <TextField
-                  label="First Name"
+                  label="Nombre"
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.firstName}
@@ -142,7 +148,7 @@ const Form = () => {
                   sx={{ gridColumn: "span 2" }}
                 />
                 <TextField
-                  label="Last Name"
+                  label="Apellido"
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.lastName}
@@ -152,7 +158,7 @@ const Form = () => {
                   sx={{ gridColumn: "span 2" }}
                 />
                 <TextField
-                  label="Location"
+                  label="Ciudad"
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.location}
@@ -162,7 +168,7 @@ const Form = () => {
                   sx={{ gridColumn: "span 4" }}
                 />
                 <TextField
-                  label="Occupation"
+                  label="Ocupación"
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.occupation}
@@ -195,7 +201,7 @@ const Form = () => {
                       >
                         <input {...getInputProps()} />
                         {!values.picture ? (
-                          <p>Add Picture Here</p>
+                          <p>Agrega una linda foto de perfil</p>
                         ) : (
                           <FlexBetween>
                             <Typography>{values.picture.name}</Typography>
@@ -220,7 +226,7 @@ const Form = () => {
               sx={{ gridColumn: "span 4" }}
             />
             <TextField
-              label="Password"
+              label="Contraseña"
               type="password"
               onBlur={handleBlur}
               onChange={handleChange}
@@ -245,11 +251,12 @@ const Form = () => {
                 "&:hover": { color: palette.primary.main },
               }}
             >
-              {isLogin ? "LOGIN" : "REGISTER"}
+              {isLogin ? "INGRESAR" : "REGISTRARSE"}
             </Button>
             <Typography
               onClick={() => {
                 setPageType(isLogin ? "register" : "login");
+                
                 resetForm();
               }}
               sx={{
@@ -262,8 +269,8 @@ const Form = () => {
               }}
             >
               {isLogin
-                ? "Don't have an account? Sign Up here."
-                : "Already have an account? Login here."}
+                ? "No tenes cuenta? Registrate aqui!"
+                : "Ya estas registrado? Ingresa aqui!"}
             </Typography>
           </Box>
         </form>
