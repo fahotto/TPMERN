@@ -8,7 +8,7 @@ const UserImage = ({ image, size = "60px" }) => {
         width={size}
         height={size}
         alt="user"
-        src={`https://mernback-sb8m.onrender.com/assets/${image}`}
+        src={`https://tpmern2-production.up.railway.app/assets/${image}`}
       />
     </Box>
   );

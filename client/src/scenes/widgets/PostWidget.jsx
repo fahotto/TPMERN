@@ -35,7 +35,7 @@ const PostWidget = ({
   const primary = palette.primary.main;
 
   const patchLike = async () => {
-    const response = await fetch(`https://mernback-sb8m.onrender.com/posts/${postId}/like`, {
+    const response = await fetch(`https://tpmern2-production.up.railway.app/posts/${postId}/like`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -64,7 +64,7 @@ const PostWidget = ({
           height="auto"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={`https://mernback-sb8m.onrender.com/assets/${picturePath}`}
+          src={`https://tpmern2-production.up.railway.app/assets/${picturePath}`}
         />
       )}
       <FlexBetween mt="0.25rem">

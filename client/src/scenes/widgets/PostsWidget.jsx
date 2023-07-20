@@ -9,7 +9,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const token = useSelector((state) => state.token);
 
   const getPosts = async () => {
-    const response = await fetch("https://mernback-sb8m.onrender.com/posts", {
+    const response = await fetch("https://tpmern2-production.up.railway.app/posts", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -19,7 +19,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   const getUserPosts = async () => {
     const response = await fetch(
-      `https://mernback-sb8m.onrender.com/posts/${userId}/posts`,
+      `https://tpmern2-production.up.railway.app/posts/${userId}/posts`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
@@ -37,37 +37,26 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return (
-    <>
-      {posts.map(
-        ({
-          _id,
-          userId,
-          firstName,
-          lastName,
-          description,
-          location,
-          picturePath,
-          userPicturePath,
-          likes,
-          comments,
-        }) => (
-          <PostWidget
-            key={_id}
-            postId={_id}
-            postUserId={userId}
-            name={`${firstName} ${lastName}`}
-            description={description}
-            location={location}
-            picturePath={picturePath}
-            userPicturePath={userPicturePath}
-            likes={likes}
-            comments={comments}
-          />
-        )
-      )}
-    </>
-  );
-};
+//GPT solution
+
+ return (
+  <>
+    {Array.isArray(posts) && posts.map(({ _id, userId, firstName, lastName, description, location, picturePath, userPicturePath, likes, comments }) => (
+      <PostWidget
+        key={_id}
+        postId={_id}
+        postUserId={userId}
+        name={`${firstName} ${lastName}`}
+        description={description}
+        location={location}
+        picturePath={picturePath}
+        userPicturePath={userPicturePath}
+        likes={likes}
+        comments={comments}
+      />
+    ))}
+  </>
+);
+}
 
 export default PostsWidget;
