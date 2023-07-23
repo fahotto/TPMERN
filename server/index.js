@@ -22,8 +22,8 @@ import { users, posts } from "./data/index.js";
 /* CONFIGURATIONS */
 // cambiar al deployar!!
 const corsOptions = {
- // origin: "http://localhost:3000", poner SIN la BARRA AL FINAL
- origin: "https://friendship.up.railway.app",
+  //origin: "http://localhost:3000",
+ origin: "https://mernfront2.onrender.com",
 } 
 
 const __filename = fileURLToPath(import.meta.url);

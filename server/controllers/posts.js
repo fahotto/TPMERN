@@ -18,7 +18,7 @@ export const createPost = async (req, res) => {
       comments: [],
     });
     await newPost.save();
-    // S0RTING FROM LAST TO FIRST
+                                // S0RTING FROM LAST TO FIRST
     const post = await Post.find().sort({ createdAt: -1 });
     res.status(201).json(post);
   } catch (err) {
@@ -26,10 +26,10 @@ export const createPost = async (req, res) => {
   }
 };
 
+
 /* READ */
 export const getFeedPosts = async (req, res) => {
-  try {
-    // S0RTING FROM LAST TO FIRST
+  try {                      // S0RTING FROM LAST TO FIRST
     const post = await Post.find().sort({ createdAt: -1 });
     res.status(200).json(post);
   } catch (err) {
@@ -39,13 +39,14 @@ export const getFeedPosts = async (req, res) => {
 
 export const getUserPosts = async (req, res) => {
   try {
-    const { userId } = req.params; // S0RTING FROM LAST TO FIRST
+    const { userId } = req.params;// S0RTING FROM LAST TO FIRST
     const post = await Post.find({ userId }).sort({ createdAt: -1 });
     res.status(200).json(post);
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
 };
+ 
 /* UPDATE */
 export const likePost = async (req, res) => {
   try {
