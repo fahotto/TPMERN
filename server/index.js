@@ -23,7 +23,7 @@ import { users, posts } from "./data/index.js";
 // cambiar al deployar!!
 const corsOptions = {
   //origin: "http://localhost:3000",
- origin: "https://mernfront2.onrender.com",
+ origin: "https://tpmernclient.vercel.app",
 } 
 
 const __filename = fileURLToPath(import.meta.url);
